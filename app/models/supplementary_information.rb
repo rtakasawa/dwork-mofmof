@@ -1,0 +1,2 @@
+class SupplementaryInformation < ApplicationRecord
+end
