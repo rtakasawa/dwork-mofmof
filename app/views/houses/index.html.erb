@@ -1,2 +1,15 @@
-<h1>Houses#index</h1>
-<p>Find me in app/views/houses/index.html.erb</p>
+<h1>閲覧</h1>
+<% @houses.each do |house| %>
+  物件名：<%= house.property_name %>
+  賃料：<%= house.rent %>
+  住所：<%= house.address %>
+  築年数：<%= house.age %>
+  備考：<%= house.remarks %>
+  <% house.supplementary_informations.each do |information| %>
+    路線：<%= information.line %>
+    最寄駅：<%= information.station %>
+    徒歩分数：<%= information.minutes_on_foot %>
+  <% end %>
+ <% end %>
+<!--  <li><a href="#">詳細を見る</a></li>-->
+<!--  <li><a href="#">追加する</a></li>-->
