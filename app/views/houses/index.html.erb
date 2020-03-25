@@ -1,15 +1,24 @@
-<h1>閲覧</h1>
+<h1>物件一覧</h1>
+<table>
+  <tr>
+    <th>物件名</th>
+    <th>賃料</th>
+    <th>住所</th>
+    <th>築年数</th>
+    <th>備考</th>
+  </tr>
 <% @houses.each do |house| %>
-  物件名：<%= house.property_name %>
-  賃料：<%= house.rent %>
-  住所：<%= house.address %>
-  築年数：<%= house.age %>
-  備考：<%= house.remarks %>
-  <% house.supplementary_informations.each do |information| %>
-    路線：<%= information.line %>
-    最寄駅：<%= information.station %>
-    徒歩分数：<%= information.minutes_on_foot %>
+    <tr>
+      <td><%= house.property_name %></td>
+      <td><%= house.rent %>円</td>
+      <td><%= house.address %></td>
+      <td><%= house.age %>年</td>
+      <td><%= house.remarks %></td>
+      <td><%= link_to '詳細', house_path(house.id) %></td>
+      <td><%= link_to "編集", edit_house_path(house.id) %></td>
+      <td><%= link_to '削除', house_path(house.id), method: :delete %></td>
+    </tr>
   <% end %>
- <% end %>
-<!--  <li><a href="#">詳細を見る</a></li>-->
-<!--  <li><a href="#">追加する</a></li>-->
+</table>
+<br>
+<%= link_to "物件を登録する", new_house_path %>

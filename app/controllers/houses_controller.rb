@@ -1,8 +1,7 @@
 class HousesController < ApplicationController
   def index
     @houses = House.all
-    @supplementary_informations = SupplementaryInformation.all
-
+    # @supplementary_informations = SupplementaryInformation.all
   end
 
   def new
@@ -19,8 +18,13 @@ class HousesController < ApplicationController
     end
   end
 
+  def show
+    @house = House.find(params[:id])
+  end
+
   def edit
     @house = House.find(params[:id])
+    @house.supplementary_informations.build
   end
 
   def update
@@ -30,6 +34,13 @@ class HousesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @house = House.find(params[:id])
+    @house.destroy
+    @house.supplementary_informations.destroy
+    redirect_to houses_path, notice:"削除しました！"
   end
 
   private
